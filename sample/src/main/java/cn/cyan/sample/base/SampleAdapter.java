@@ -3,6 +3,9 @@ package cn.cyan.sample.base;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
+import com.felipecsl.asymmetricgridview.AGVRecyclerViewAdapter;
+import com.felipecsl.asymmetricgridview.AsymmetricItem;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -12,7 +15,7 @@ import cn.cyan.dragrecyclerview.OnItemChangeListener;
  * User : Cyan(newbeeeeeeeee@gmail.com)
  * Date : 2017/1/4
  */
-public abstract class SampleAdapter<T extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<T> implements OnItemChangeListener {
+public abstract class SampleAdapter<T extends RecyclerView.ViewHolder> extends AGVRecyclerViewAdapter<T> implements OnItemChangeListener {
     protected Context context;
     protected volatile List<SampleEntity> data;
 
@@ -35,6 +38,11 @@ public abstract class SampleAdapter<T extends RecyclerView.ViewHolder> extends R
             }
         }
         notifyItemMoved(form, target);
+    }
+
+    @Override
+    public AsymmetricItem getItem(int position) {
+        return data.get(position);
     }
 
     @Override

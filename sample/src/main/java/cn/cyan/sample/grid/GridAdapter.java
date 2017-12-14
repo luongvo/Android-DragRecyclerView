@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.felipecsl.asymmetricgridview.AsymmetricItem;
+
 import java.util.List;
 
 import cn.cyan.sample.R;

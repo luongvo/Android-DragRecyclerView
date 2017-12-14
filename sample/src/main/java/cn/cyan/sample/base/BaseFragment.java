@@ -1,5 +1,6 @@
 package cn.cyan.sample.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.felipecsl.asymmetricgridview.AGVRecyclerViewAdapter;
+import com.felipecsl.asymmetricgridview.AsymmetricRecyclerView;
+import com.felipecsl.asymmetricgridview.AsymmetricRecyclerViewAdapter;
 
 import java.util.List;
 
@@ -41,10 +46,14 @@ public abstract class BaseFragment extends Fragment {
         dragRecyclerView.setLayoutManager(layoutManager());
         data = initData();
         /** custom setting */
+
+        SampleAdapter sampleAdapter = adapter(data);
+        AsymmetricRecyclerViewAdapter asymmetricRecyclerViewAdapter = new AsymmetricRecyclerViewAdapter<RecyclerView.ViewHolder>(
+                getContext(), dragRecyclerView, sampleAdapter);
         dragRecyclerView
                 .dragEnable(true)
                 .showDragAnimation(true)
-                .setDragAdapter(adapter(data))
+                .setDragAdapter(asymmetricRecyclerViewAdapter)
                 .bindEvent(onItemTouchEvent);
     }
 
@@ -56,7 +65,7 @@ public abstract class BaseFragment extends Fragment {
     HoldTouchHelper.OnItemTouchEvent onItemTouchEvent = new HoldTouchHelper.OnItemTouchEvent() {
         @Override
         public void onLongPress(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, int position) {
-            if (((SampleAdapter) recyclerView.getAdapter()).onItemDrag(position)) {
+            if (((SampleAdapter) ((AsymmetricRecyclerViewAdapter) recyclerView.getAdapter()).getWrappedAdapter()).onItemDrag(position)) {
                 ((DragRecyclerView) recyclerView).startDrag(position);
             }
         }

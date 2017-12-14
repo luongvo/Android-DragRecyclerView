@@ -13,21 +13,24 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 
+import com.felipecsl.asymmetricgridview.AsymmetricRecyclerView;
+import com.felipecsl.asymmetricgridview.AsymmetricRecyclerViewAdapter;
+
 /**
  * User : Cyan(newbeeeeeeeee@gmail.com)
  * Date : 2016/9/28
  */
-public class DragRecyclerView extends RecyclerView {
+public class DragRecyclerView extends AsymmetricRecyclerView {
 
     private OnItemChangeListener adapter;
     private boolean dragEnable;
     private boolean showDragAnimation;
 
 
-    public DragRecyclerView(Context context) {
-        super(context);
-        init(context, null);
-    }
+//    public DragRecyclerView(Context context) {
+//        super(context);
+//        init(context, null);
+//    }
 
     public DragRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -161,14 +164,14 @@ public class DragRecyclerView extends RecyclerView {
     }
 
 
-    public DragRecyclerView setDragAdapter(OnItemChangeListener dragBaseAdapter) {
-        if (dragBaseAdapter instanceof Adapter) {
-            this.adapter = dragBaseAdapter;
+    public DragRecyclerView setDragAdapter(AsymmetricRecyclerViewAdapter dragBaseAdapter) {
+//        if (dragBaseAdapter instanceof Adapter) {
+            this.adapter =(OnItemChangeListener) dragBaseAdapter.getWrappedAdapter();
             touchHelper.attachToRecyclerView(this);
-            super.setAdapter((Adapter) adapter);
-        } else {
-            throw new IllegalArgumentException();
-        }
+            super.setAdapter((Adapter) dragBaseAdapter);
+//        } else {
+//            throw new IllegalArgumentException();
+//        }
         return this;
     }
 
