@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="grid_array">
-        <item>@string/hot</item>
-        <item>@string/news_international</item>
-        <item>@string/news</item>
-        <item>@string/beauty</item>
-        <item>@string/politics</item>
-        <item>@string/sports</item>
-        <item>@string/gossip</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
     </string-array>
 
 

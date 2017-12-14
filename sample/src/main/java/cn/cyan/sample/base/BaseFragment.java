@@ -13,12 +13,14 @@ import android.widget.Toast;
 import com.felipecsl.asymmetricgridview.AGVRecyclerViewAdapter;
 import com.felipecsl.asymmetricgridview.AsymmetricRecyclerView;
 import com.felipecsl.asymmetricgridview.AsymmetricRecyclerViewAdapter;
+import com.felipecsl.asymmetricgridview.Utils;
 
 import java.util.List;
 
 import cn.cyan.dragrecyclerview.DragRecyclerView;
 import cn.cyan.dragrecyclerview.HoldTouchHelper;
 import cn.cyan.sample.R;
+import cn.cyan.sample.SpacesItemDecoration;
 
 /**
  * User : Cyan(newbeeeeeeeee@gmail.com)
@@ -41,9 +43,17 @@ public abstract class BaseFragment extends Fragment {
     private void initView(View view) {
 
         DragRecyclerView dragRecyclerView = (DragRecyclerView) view.findViewById(R.id.drv);
-        dragRecyclerView.addItemDecoration(new DividerGridItemDecoration());
-        dragRecyclerView.setHasFixedSize(false);
-        dragRecyclerView.setLayoutManager(layoutManager());
+//        dragRecyclerView.addItemDecoration(new DividerGridItemDecoration());
+//        dragRecyclerView.setHasFixedSize(false);
+//        dragRecyclerView.setLayoutManager(layoutManager());
+
+        int spacing = Utils.dpToPx(getContext(), 3);
+        dragRecyclerView.setRequestedColumnCount(3);
+        dragRecyclerView.setDebugging(true);
+        dragRecyclerView.setRequestedHorizontalSpacing(spacing);
+        dragRecyclerView.addItemDecoration(
+                new SpacesItemDecoration(spacing));
+
         data = initData();
         /** custom setting */
 

@@ -37,12 +37,15 @@ public class GridFragment extends BaseFragment {
             item.setDropEnable(true);
             result.add(item);
         }
-        // add more
-        SampleEntity addMore = new SampleEntity();
-        addMore.setText(getString(R.string.more));
-        addMore.setDragEnable(false);
-        addMore.setDragEnable(false);
-        result.add(addMore);
+//        // add more
+//        SampleEntity addMore = new SampleEntity();
+//        addMore.setText("+");
+//        addMore.setDragEnable(false);
+//        addMore.setDragEnable(false);
+//        result.add(addMore);
+
+        result.get(0).setColumnSpan(2);
+        result.get(0).setRowSpan(2);
         return result;
     }
 

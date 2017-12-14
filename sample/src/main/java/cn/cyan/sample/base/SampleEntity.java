@@ -92,4 +92,12 @@ public class SampleEntity implements AsymmetricItem {
     public int getRowSpan() {
         return rowSpan;
     }
+
+    public void setColumnSpan(int columnSpan) {
+        this.columnSpan = columnSpan;
+    }
+
+    public void setRowSpan(int rowSpan) {
+        this.rowSpan = rowSpan;
+    }
 }
